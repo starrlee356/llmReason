@@ -30,11 +30,14 @@ def main():
     
     # llm = LLM(model_name=args.llm_name)
     model = infer_and_answer(entity_triplets_file, id2ent_file, id2rel_file, stats_file, args.rel_width, args.ent_width, args.fuzzy_rule, args.llm_name)
+    
     for qtype, qpattern in model.q_structs.items():
-        logical_queries = queries[qpattern]
-        for idx, query in enumerate(logical_queries):
-            model.answer_query(logical_query=query, query_type=qtype, idx=idx, output_path=pred_path)
-        
+        if qpattern == ('e', ('r', 'r')):
+            logical_queries = queries[qpattern]
+            print(f"============== {qtype}: {qpattern} ==============")
+            for idx, query in tqdm(enumerate(logical_queries)):
+                model.answer_query(logical_query=query, query_type=qtype, idx=idx, output_path=pred_path)
+    
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()

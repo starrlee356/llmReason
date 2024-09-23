@@ -46,27 +46,15 @@ class infer_and_answer:
         if res.startswith("Error"):
             print(res)
             # 其他错误处理代码
-        
-        pattern = r"{\s*(?P<relation>[^()]+)\s+\(Score:\s+(?P<score>[0-9.]+)\)}"
-        relations_with_scores = defaultdict()
-        for match in re.finditer(pattern, res):
-            relation = match.group("relation").strip()
-            if ';' in relation:
-                continue
-            score = match.group("score")
-            if not relation or not score:
-                return False, "output uncompleted.."
-            try:
-                score = float(score)
-            except ValueError:
-                return False, "Invalid score"
-            relations_with_scores[relation] = score
 
-        if not relations_with_scores:
+        pattern = r'\d+\.\s*(\S+)\s*\(Score:\s*([0-1](?:\.\d+)?)\)'
+        matches = re.findall(pattern, res)
+        relation_dict = {relation: float(score) for relation, score in matches}
+        if not relation_dict:
             return False, "No relations found"
+        return True, relation_dict
         
-        return True, relations_with_scores
-
+        
     def normalize(self, arr):
         total = np.sum(arr)
         if total == 0:
@@ -76,7 +64,7 @@ class infer_and_answer:
     def rel_proj(self, vector, sub_question): # 接受一个variable的fuzzy vec; 返回它经过rel proj 后的variable的fuzzy vec
         entities_with_scores = self.fuzzyVector_to_entities(vector) #{ent id: score}
         relations, rel2answer = self.search_KG(entities_with_scores) # dict. rel name: {(ent_id, ent_score, answer_id)}
-        prompt = extract_relation_prompt % (self.rel_width, self.rel_width) + sub_question + '\nRelations: '+ '; '.join(relations) + "\nA: "
+        prompt = extract_relation_prompt % (self.rel_width, self.rel_width, self.rel_width, sub_question, '; '.join(relations))
         result = self.run_llm(prompt) 
         flag, res = self.format_llm_res(result) # dict. rel name: rel_score
         if not flag:
