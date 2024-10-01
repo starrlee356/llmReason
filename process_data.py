@@ -3,6 +3,7 @@ import pickle as pkl
 import argparse
 import csv
 from global_config import *
+from tqdm import tqdm
 
 def mergeDictionary(dict_1, dict_2):
    dict_3 = {**dict_1, **dict_2}
@@ -24,7 +25,7 @@ def merge_queries_and_save():
         with open(valid_queries_path,"rb") as validq_file:
             valid_queries = pkl.load(validq_file)
         temp_queries = mergeDictionary(train_queries, test_queries)
-        queries = mergeDictionary(temp_queries,valid_queries) # qtype:[queries]
+        queries = mergeDictionary(temp_queries,valid_queries) # qtype:[queries] queries:train,test,val
         del(train_queries, test_queries, valid_queries, temp_queries)
         
         with open(save_file, "wb") as f:
@@ -97,14 +98,62 @@ def gen_ans_txt():
                 with open(file_name, "w") as f:
                     print(ans_text, file=f)
 
+from collections import defaultdict
+def gen_sorted_ans():
+    directory = os.path.join(args.output_path, "sorted_answers")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    with open(os.path.join(args.data_path, "queries.pkl"), "rb") as q_f:
+        queries = pkl.load(q_f)
+    with open(os.path.join(args.data_path, "answers.pkl"), "rb") as a_f:
+        answers = pkl.load(a_f)
+
+    idx2query = defaultdict()
+    for qtype, qpattern in QUERY_STRUCTS.items():
+        logical_queries = queries[qpattern] #set of queries of this qtype
+        idx2query[qtype] = {i:q for i,q in enumerate(tqdm(logical_queries))}
+        for i, q in tqdm(idx2query[qtype].items()):
+            ans_file = os.path.join(directory, f"{qtype}_{i}_answer.txt")
+            ans_text = ", ".join(map(str, answers[q]))
+            with open(ans_file, "w") as f:
+                print(ans_text, file=f)
+
+    save_dict_path = os.path.join(args.output_path, "idx2query.pkl")
+    with open(save_dict_path, "wb") as file:
+        pkl.dump(idx2query, file)
+    
+"""
+import itertools
+from tqdm import tqdm
+def gen_QandA():
+    directory = os.path.join(args.output_path, "QandA")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    if args.over_write:
+        with open(os.path.join(args.data_path, "queries.pkl"), "rb") as q_f:
+            queries = pkl.load(q_f)
+        with open(os.path.join(args.data_path, "answers.pkl"), "rb") as a_f:
+            answers = pkl.load(a_f)
+
+        for q_type in Q_types:
+            q = queries[QUERY_STRUCTS[q_type]] # "1p" -> ('e', ('r',))
+            for idx, query in enumerate(tqdm(itertools.islice(q, 100))):
+                file_name = os.path.join(directory, f"{q_type}_{idx}_answer.txt")
+                ans_text = str(query) + "\n" + ", ".join(map(str, answers[query]))
+                with open(file_name, "w") as f:
+                    print(ans_text, file=f)
+"""
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_path', type=str, default="data/NELL-betae", help="Path to raw data.")
-    parser.add_argument('--output_path', type=str, default="data/NELL-betae/processed", help="Path to output the processed files.")
+    parser.add_argument('--data_path', type=str, default="../data/NELL-betae", help="Path to raw data.")
+    parser.add_argument('--output_path', type=str, default="../data/NELL-betae/processed", help="Path to output the processed files.")
     parser.add_argument('--over_write', action="store_true", help="default is false: if file exist, will not overwrite. pass --over_write in script to over write.")
     args = parser.parse_args()
-    merge_answer_and_save()
-    merge_queries_and_save()
-    gen_triplets_and_save()
-    gen_ans_txt()
+    #merge_answer_and_save()
+    #merge_queries_and_save()
+    #gen_triplets_and_save()
+    #gen_ans_txt()
+    #gen_QandA()
+    gen_sorted_ans()

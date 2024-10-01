@@ -1,6 +1,6 @@
 rel_proj_question = "Which entities are connected to %s by relation %s?"
 
-extract_relation_prompt = """ Please retrieve %s relations (separated by semicolon) that contribute to the question Q and rate their contribution on a scale from 0 to 1 (the sum of the scores of %s relations is 1).
+extract_relation_prompt = """ Please retrieve at most %s relations (separated by semicolon) that contribute to the question Q and rate their contribution on a scale from 0 to 1 (the sum of the scores of %s relations is 1).
 Please mark that your answer should follow these rules: 
 1) Each relation's score should be within the [0,1] range;
 2) The sum of these %s scores should be 1; 
