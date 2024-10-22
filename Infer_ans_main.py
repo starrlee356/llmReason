@@ -9,7 +9,7 @@ import random
 import json
 from Infer_Answer1 import infer_and_answer
 from compute_scores import compute_score_main
-
+import time
 
 
 logging.basicConfig(level=logging.INFO)
@@ -34,7 +34,7 @@ def main():
     
     # llm = LLM(model_name=args.llm_name)
     model = infer_and_answer(entity_triplets_file, id2ent_file, id2rel_file, stats_file, args.rel_width, 
-                             args.ent_width, args.fuzzy_rule, args.llm_name, args.prune, args.score_rule, 
+                             args.ent_width, args.fuzzy_rule, args.model_name, args.prune, args.score_rule, 
                              args.normalize_rule)
     idx_to_queries = pkl.load(open(os.path.join(args.output_path, "idx2query.pkl"), "rb"))
     
@@ -57,6 +57,9 @@ def main():
         for idx in tqdm(idx_list, desc=f"{qtype} {qpattern} {des}"):
             query = idx_to_queries[qtype][idx]
             model.answer_query(logical_query=query, query_type=qtype, idx=idx, output_path=pred_path)
+        print(f"avg prompt len = {model.prompt_length / model.llm_cnt}")
+        print(f"avg rel prompt len = {model.rel_prompt_length / model.llm_cnt}")
+        print(f"avg rel set size = {model.rel_set_size / model.llm_cnt}")
 
     if args.qtype == "all":
         for qtype, qpattern in model.q_structs.items():
@@ -66,20 +69,22 @@ def main():
             if qtype == args.qtype:
                 answer(qtype=qtype, qpattern=qpattern)
 
-    print(f"there are {model.empty_cnt} queries to which LLM fails to generate answers.")  
+    print(f"there are {model.empty_cnt} queries to which LLM fails to generate answers.")
+    print(f"llm time = {model.llm_time} s.")  
     
     
 
 if __name__=="__main__":
+    start = time.time()
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--data_path', type=str, default="../data/NELL-betae", help="Path to raw data.")
     parser.add_argument('--output_path', type=str, default="../data/NELL-betae/processed", help="Path to output the processed files.")
     parser.add_argument('--rel_width', type=int, default=50, help="Ask LLM to retrieve top rel_width relations each time.")
-    parser.add_argument('--ent_width', type=int, default=50, help="Retrieve top ent_width entities from fuzzy vector.")
+    parser.add_argument('--ent_width', type=int, default=25, help="Retrieve top ent_width entities from fuzzy vector.")
     parser.add_argument('--prune', type=float, default=0.9, help="if entities score add up to {prune} then omit the rest.")
     parser.add_argument('--fuzzy_rule', type=str, default="min_max", help="min_max/ prod/ lukas.")
-    parser.add_argument('--llm_name', type=str, default="llama3:8b")
+    parser.add_argument('--model_name', type=str, default="Meta-Llama-3-8B-Instruct")
     parser.add_argument('--qtype', type=str, default="2p")
     parser.add_argument('--score_rule', type=str, default="max", help="the rule when rel proj. max/sum.") #origin: sum
     parser.add_argument('--normalize_rule', type=str, default="standard_norm", help="choose a normalize function. min_max_norm/standard_norm/l2_norm/sigmoid/softmax.")
@@ -95,4 +100,8 @@ if __name__=="__main__":
     main()
 
     compute_score_main(args)
+
+    end = time.time()
+    print(f"total time = {end-start} s.")
+
 
