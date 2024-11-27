@@ -1,0 +1,3079 @@
+[2024-11-10 20:19:34,307][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:19:34,307][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:19:34,545][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:19:34,545][root][INFO] - 16-bits training: False 
+[2024-11-10 20:19:34,545][root][INFO] - Reading saved model from outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:26:45,327][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:26:45,327][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:26:45,545][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:26:45,545][root][INFO] - 16-bits training: False 
+[2024-11-10 20:26:45,545][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:26:47,062][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:26:47,063][root][INFO] - CFG:
+[2024-11-10 20:26:47,065][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:26:47,884][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:26:49,144][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:26:50,295][root][INFO] - Loading saved model state ...
+[2024-11-10 20:27:45,897][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:27:45,897][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:27:46,159][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:27:46,160][root][INFO] - 16-bits training: False 
+[2024-11-10 20:27:46,160][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:27:48,033][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:27:48,034][root][INFO] - CFG:
+[2024-11-10 20:27:48,036][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:27:48,946][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:27:49,938][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:27:51,021][root][INFO] - Loading saved model state ...
+[2024-11-10 20:28:20,163][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:28:20,163][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:28:20,380][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:28:20,381][root][INFO] - 16-bits training: False 
+[2024-11-10 20:28:20,381][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:28:22,122][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:28:22,123][root][INFO] - CFG:
+[2024-11-10 20:28:22,126][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:28:22,864][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:28:23,825][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:28:24,907][root][INFO] - Loading saved model state ...
+[2024-11-10 20:29:51,128][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:29:51,129][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:29:51,357][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:29:51,357][root][INFO] - 16-bits training: False 
+[2024-11-10 20:29:51,357][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:29:53,024][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:29:53,025][root][INFO] - CFG:
+[2024-11-10 20:29:53,027][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:29:53,799][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:29:55,061][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:29:56,186][root][INFO] - Loading saved model state ...
+[2024-11-10 20:31:14,903][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:31:14,903][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:31:15,122][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:31:15,122][root][INFO] - 16-bits training: False 
+[2024-11-10 20:31:15,123][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:31:16,750][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:31:16,751][root][INFO] - CFG:
+[2024-11-10 20:31:16,754][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:31:17,495][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:31:18,615][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:31:19,845][root][INFO] - Loading saved model state ...
+[2024-11-10 20:32:24,357][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:32:24,357][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:32:24,633][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:32:24,633][root][INFO] - 16-bits training: False 
+[2024-11-10 20:32:24,633][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:32:26,254][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:32:26,255][root][INFO] - CFG:
+[2024-11-10 20:32:26,258][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:32:27,005][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:32:28,388][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:32:29,531][root][INFO] - Loading saved model state ...
+[2024-11-10 20:32:35,686][root][INFO] - Encoded passages 60
+[2024-11-10 20:37:53,227][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:37:53,228][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:37:53,461][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:37:53,461][root][INFO] - 16-bits training: False 
+[2024-11-10 20:37:53,462][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:37:55,152][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:37:55,156][root][INFO] - CFG:
+[2024-11-10 20:37:55,166][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:37:56,751][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:37:57,933][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:37:59,138][root][INFO] - Loading saved model state ...
+[2024-11-10 20:38:28,831][root][INFO] - Encoded passages 160
+[2024-11-10 20:38:30,320][root][INFO] - Encoded passages 320
+[2024-11-10 20:38:31,603][root][INFO] - Encoded passages 480
+[2024-11-10 20:38:33,033][root][INFO] - Encoded passages 640
+[2024-11-10 20:39:12,286][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:39:12,286][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:39:12,536][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:39:12,537][root][INFO] - 16-bits training: False 
+[2024-11-10 20:39:12,538][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:39:14,255][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:39:14,259][root][INFO] - CFG:
+[2024-11-10 20:39:14,269][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:39:15,881][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:39:18,086][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:39:19,338][root][INFO] - Loading saved model state ...
+[2024-11-10 20:51:10,440][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:51:10,440][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:51:10,661][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:51:10,661][root][INFO] - 16-bits training: False 
+[2024-11-10 20:51:10,661][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:51:12,337][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:51:12,338][root][INFO] - CFG:
+[2024-11-10 20:51:12,340][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:51:13,110][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:51:14,674][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:51:15,852][root][INFO] - Loading saved model state ...
+[2024-11-10 20:57:44,861][root][INFO] - CFG's local_rank=-1
+[2024-11-10 20:57:44,862][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 20:57:45,093][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 20:57:45,094][root][INFO] - 16-bits training: False 
+[2024-11-10 20:57:45,095][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 20:57:46,802][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 20:57:46,806][root][INFO] - CFG:
+[2024-11-10 20:57:46,816][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 20:57:48,425][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:57:49,561][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 20:57:51,028][root][INFO] - Loading saved model state ...
+[2024-11-10 21:01:47,224][root][INFO] - CFG's local_rank=-1
+[2024-11-10 21:01:47,225][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 21:01:47,514][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 21:01:47,515][root][INFO] - 16-bits training: False 
+[2024-11-10 21:01:47,516][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 21:01:49,213][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 21:01:49,217][root][INFO] - CFG:
+[2024-11-10 21:01:49,227][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 21:01:50,859][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:01:51,926][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:01:53,273][root][INFO] - Loading saved model state ...
+[2024-11-10 21:06:40,700][root][INFO] - CFG's local_rank=-1
+[2024-11-10 21:06:40,700][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 21:06:40,919][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 21:06:40,919][root][INFO] - 16-bits training: False 
+[2024-11-10 21:06:40,920][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 21:06:42,652][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 21:06:42,656][root][INFO] - CFG:
+[2024-11-10 21:06:42,667][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 21:06:44,311][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:06:45,394][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:06:46,640][root][INFO] - Loading saved model state ...
+[2024-11-10 21:08:44,296][root][INFO] - CFG's local_rank=-1
+[2024-11-10 21:08:44,297][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 21:08:44,541][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 21:08:44,542][root][INFO] - 16-bits training: False 
+[2024-11-10 21:08:44,543][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 21:08:46,335][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 21:08:46,339][root][INFO] - CFG:
+[2024-11-10 21:08:46,349][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 21:08:47,999][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:08:49,395][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:08:50,578][root][INFO] - Loading saved model state ...
+[2024-11-10 21:22:47,061][root][INFO] - CFG's local_rank=-1
+[2024-11-10 21:22:47,062][root][INFO] - Env WORLD_SIZE=None
+[2024-11-10 21:22:47,330][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-10 21:22:47,330][root][INFO] - 16-bits training: False 
+[2024-11-10 21:22:47,330][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-10 21:22:48,966][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-10 21:22:48,967][root][INFO] - CFG:
+[2024-11-10 21:22:48,969][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-10 21:22:49,708][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:22:50,762][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-10 21:22:51,927][root][INFO] - Loading saved model state ...
+[2024-11-11 11:24:34,478][root][INFO] - CFG's local_rank=-1
+[2024-11-11 11:24:34,479][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 11:24:34,700][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 11:24:34,700][root][INFO] - 16-bits training: False 
+[2024-11-11 11:24:34,701][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 11:24:36,320][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 11:24:36,321][root][INFO] - CFG:
+[2024-11-11 11:24:36,323][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 11:24:37,066][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 11:24:37,963][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 11:24:39,063][root][INFO] - Loading saved model state ...
+[2024-11-11 12:21:38,199][root][INFO] - CFG's local_rank=-1
+[2024-11-11 12:21:38,200][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 12:21:38,468][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 12:21:38,468][root][INFO] - 16-bits training: False 
+[2024-11-11 12:21:38,470][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 12:21:40,138][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 12:21:40,141][root][INFO] - CFG:
+[2024-11-11 12:21:40,151][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 12:21:41,749][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:21:42,717][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:21:43,937][root][INFO] - Loading saved model state ...
+[2024-11-11 12:34:13,167][root][INFO] - CFG's local_rank=-1
+[2024-11-11 12:34:13,167][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 12:34:13,433][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 12:34:13,434][root][INFO] - 16-bits training: False 
+[2024-11-11 12:34:13,434][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 12:34:15,030][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 12:34:15,030][root][INFO] - CFG:
+[2024-11-11 12:34:15,033][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 12:34:15,784][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:34:16,708][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:34:17,780][root][INFO] - Loading saved model state ...
+[2024-11-11 12:51:03,547][root][INFO] - CFG's local_rank=-1
+[2024-11-11 12:51:03,547][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 12:51:03,769][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 12:51:03,769][root][INFO] - 16-bits training: False 
+[2024-11-11 12:51:03,769][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 12:51:05,371][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 12:51:05,372][root][INFO] - CFG:
+[2024-11-11 12:51:05,374][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 12:51:06,116][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:51:07,119][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 12:51:08,248][root][INFO] - Loading saved model state ...
+[2024-11-11 14:06:09,247][root][INFO] - CFG's local_rank=-1
+[2024-11-11 14:06:09,248][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 14:06:09,469][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 14:06:09,469][root][INFO] - 16-bits training: False 
+[2024-11-11 14:06:09,469][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 14:06:11,075][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 14:06:11,076][root][INFO] - CFG:
+[2024-11-11 14:06:11,078][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 14:06:11,814][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:06:12,800][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:06:13,881][root][INFO] - Loading saved model state ...
+[2024-11-11 14:06:58,500][root][INFO] - CFG's local_rank=-1
+[2024-11-11 14:06:58,500][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 14:06:58,718][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 14:06:58,719][root][INFO] - 16-bits training: False 
+[2024-11-11 14:06:58,719][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 14:07:00,349][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 14:07:00,350][root][INFO] - CFG:
+[2024-11-11 14:07:00,352][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 14:07:01,072][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:07:01,943][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:07:03,006][root][INFO] - Loading saved model state ...
+[2024-11-11 14:15:12,395][root][INFO] - CFG's local_rank=-1
+[2024-11-11 14:15:12,395][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 14:15:12,617][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 14:15:12,617][root][INFO] - 16-bits training: False 
+[2024-11-11 14:15:12,617][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 14:15:14,218][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 14:15:14,219][root][INFO] - CFG:
+[2024-11-11 14:15:14,221][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 14:15:14,955][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:15:15,859][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:15:16,972][root][INFO] - Loading saved model state ...
+[2024-11-11 14:15:58,187][root][INFO] - CFG's local_rank=-1
+[2024-11-11 14:15:58,188][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 14:15:58,448][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 14:15:58,448][root][INFO] - 16-bits training: False 
+[2024-11-11 14:15:58,448][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 14:16:00,054][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 14:16:00,055][root][INFO] - CFG:
+[2024-11-11 14:16:00,057][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 14:16:00,779][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:16:01,666][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:16:02,728][root][INFO] - Loading saved model state ...
+[2024-11-11 14:17:55,627][root][INFO] - CFG's local_rank=-1
+[2024-11-11 14:17:55,628][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 14:17:55,851][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 14:17:55,852][root][INFO] - 16-bits training: False 
+[2024-11-11 14:17:55,852][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 14:17:57,448][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 14:17:57,449][root][INFO] - CFG:
+[2024-11-11 14:17:57,452][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 14:17:58,187][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:17:59,063][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 14:18:00,125][root][INFO] - Loading saved model state ...
+[2024-11-11 15:27:22,614][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:27:22,614][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:27:22,844][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:27:22,845][root][INFO] - 16-bits training: False 
+[2024-11-11 15:27:22,846][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:27:24,529][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:27:24,532][root][INFO] - CFG:
+[2024-11-11 15:27:24,542][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:27:26,143][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:27:27,099][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:27:28,278][root][INFO] - Loading saved model state ...
+[2024-11-11 15:47:24,231][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:47:24,232][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:47:24,500][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:47:24,501][root][INFO] - 16-bits training: False 
+[2024-11-11 15:47:24,502][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:47:26,154][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:47:26,158][root][INFO] - CFG:
+[2024-11-11 15:47:26,168][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:47:27,760][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:47:28,729][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:47:29,891][root][INFO] - Loading saved model state ...
+[2024-11-11 15:50:29,549][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:50:29,549][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:50:29,765][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:50:29,765][root][INFO] - 16-bits training: False 
+[2024-11-11 15:50:29,765][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:50:55,161][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:50:55,162][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:50:55,384][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:50:55,385][root][INFO] - 16-bits training: False 
+[2024-11-11 15:50:55,386][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:50:57,080][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:50:57,084][root][INFO] - CFG:
+[2024-11-11 15:50:57,094][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:50:58,704][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:51:00,074][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:51:01,220][root][INFO] - Loading saved model state ...
+[2024-11-11 15:55:16,430][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:55:16,431][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:55:16,708][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:55:16,709][root][INFO] - 16-bits training: False 
+[2024-11-11 15:55:16,710][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:55:18,374][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:55:18,378][root][INFO] - CFG:
+[2024-11-11 15:55:18,388][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:55:19,982][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:55:20,966][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:55:22,119][root][INFO] - Loading saved model state ...
+[2024-11-11 15:56:12,676][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:56:12,676][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:56:12,896][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:56:12,897][root][INFO] - 16-bits training: False 
+[2024-11-11 15:56:12,897][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:56:14,492][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:56:14,492][root][INFO] - CFG:
+[2024-11-11 15:56:14,495][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:56:15,238][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:56:16,106][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:56:17,193][root][INFO] - Loading saved model state ...
+[2024-11-11 15:59:25,159][root][INFO] - CFG's local_rank=-1
+[2024-11-11 15:59:25,160][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 15:59:25,383][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 15:59:25,383][root][INFO] - 16-bits training: False 
+[2024-11-11 15:59:25,383][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 15:59:26,973][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 15:59:26,974][root][INFO] - CFG:
+[2024-11-11 15:59:26,976][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 15:59:27,709][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:59:28,592][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 15:59:29,658][root][INFO] - Loading saved model state ...
+[2024-11-11 16:03:08,064][openai._base_client][INFO] - Retrying request to /chat/completions in 0.440794 seconds
+[2024-11-11 16:03:42,896][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:03:42,897][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:03:43,117][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:03:43,117][root][INFO] - 16-bits training: False 
+[2024-11-11 16:03:43,117][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:03:44,724][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:03:44,725][root][INFO] - CFG:
+[2024-11-11 16:03:44,727][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:03:45,459][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:03:46,356][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:03:47,423][root][INFO] - Loading saved model state ...
+[2024-11-11 16:07:24,509][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:07:24,509][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:07:24,736][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:07:24,737][root][INFO] - 16-bits training: False 
+[2024-11-11 16:07:24,738][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:07:26,416][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:07:26,420][root][INFO] - CFG:
+[2024-11-11 16:07:26,430][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:07:28,028][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:07:29,020][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:07:30,198][root][INFO] - Loading saved model state ...
+[2024-11-11 16:13:49,106][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:13:49,107][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:13:49,357][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:13:49,357][root][INFO] - 16-bits training: False 
+[2024-11-11 16:13:49,358][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:13:50,996][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:13:51,000][root][INFO] - CFG:
+[2024-11-11 16:13:51,010][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:13:52,614][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:13:53,589][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:13:54,791][root][INFO] - Loading saved model state ...
+[2024-11-11 16:15:21,613][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:15:21,613][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:15:21,863][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:15:21,863][root][INFO] - 16-bits training: False 
+[2024-11-11 16:15:21,863][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:15:23,445][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:15:23,446][root][INFO] - CFG:
+[2024-11-11 16:15:23,448][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:15:24,196][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:15:25,139][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:15:26,182][root][INFO] - Loading saved model state ...
+[2024-11-11 16:18:50,777][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:18:50,778][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:18:50,999][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:18:50,999][root][INFO] - 16-bits training: False 
+[2024-11-11 16:18:50,999][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:18:52,579][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:18:52,580][root][INFO] - CFG:
+[2024-11-11 16:18:52,582][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:18:53,317][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:18:54,261][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:18:55,359][root][INFO] - Loading saved model state ...
+[2024-11-11 16:47:41,336][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:47:41,337][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:47:41,564][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:47:41,565][root][INFO] - 16-bits training: False 
+[2024-11-11 16:47:41,566][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:47:43,241][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:47:43,245][root][INFO] - CFG:
+[2024-11-11 16:47:43,255][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:47:44,887][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:47:45,857][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:47:47,004][root][INFO] - Loading saved model state ...
+[2024-11-11 16:49:11,701][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:49:11,701][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:49:11,938][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:49:11,939][root][INFO] - 16-bits training: False 
+[2024-11-11 16:49:11,940][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:49:13,588][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:49:13,592][root][INFO] - CFG:
+[2024-11-11 16:49:13,602][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:49:15,189][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:49:16,180][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:49:17,366][root][INFO] - Loading saved model state ...
+[2024-11-11 16:53:02,002][root][INFO] - CFG's local_rank=-1
+[2024-11-11 16:53:02,003][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 16:53:02,249][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 16:53:02,250][root][INFO] - 16-bits training: False 
+[2024-11-11 16:53:02,251][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 16:53:03,910][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 16:53:03,914][root][INFO] - CFG:
+[2024-11-11 16:53:03,924][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 16:53:05,521][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:53:06,518][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 16:53:07,664][root][INFO] - Loading saved model state ...
+[2024-11-11 18:59:22,382][root][INFO] - CFG's local_rank=-1
+[2024-11-11 18:59:22,383][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 18:59:22,607][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 18:59:22,608][root][INFO] - 16-bits training: False 
+[2024-11-11 18:59:22,609][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 18:59:24,256][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 18:59:24,260][root][INFO] - CFG:
+[2024-11-11 18:59:24,270][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 18:59:25,858][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 18:59:26,931][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 18:59:28,107][root][INFO] - Loading saved model state ...
+[2024-11-11 19:03:12,459][root][INFO] - CFG's local_rank=-1
+[2024-11-11 19:03:12,460][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 19:03:12,728][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 19:03:12,728][root][INFO] - 16-bits training: False 
+[2024-11-11 19:03:12,729][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 19:03:14,390][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 19:03:14,393][root][INFO] - CFG:
+[2024-11-11 19:03:14,403][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 19:03:16,013][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 19:03:17,125][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 19:03:18,345][root][INFO] - Loading saved model state ...
+[2024-11-11 21:06:51,446][root][INFO] - CFG's local_rank=-1
+[2024-11-11 21:06:51,446][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 21:06:51,697][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 21:06:51,698][root][INFO] - 16-bits training: False 
+[2024-11-11 21:06:51,699][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 21:06:53,280][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 21:06:53,281][root][INFO] - CFG:
+[2024-11-11 21:06:53,284][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 21:06:54,027][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:06:55,116][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:06:56,222][root][INFO] - Loading saved model state ...
+[2024-11-11 21:08:14,023][root][INFO] - CFG's local_rank=-1
+[2024-11-11 21:08:14,023][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 21:08:14,302][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 21:08:14,302][root][INFO] - 16-bits training: False 
+[2024-11-11 21:08:14,303][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 21:08:15,875][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 21:08:15,876][root][INFO] - CFG:
+[2024-11-11 21:08:15,878][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 21:08:16,611][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:08:18,660][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:08:21,169][root][INFO] - Loading saved model state ...
+[2024-11-11 21:10:38,497][root][INFO] - CFG's local_rank=-1
+[2024-11-11 21:10:38,498][root][INFO] - Env WORLD_SIZE=None
+[2024-11-11 21:10:38,782][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-11 21:10:38,782][root][INFO] - 16-bits training: False 
+[2024-11-11 21:10:38,784][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-11 21:10:40,442][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-11 21:10:40,446][root][INFO] - CFG:
+[2024-11-11 21:10:40,456][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-11 21:10:42,050][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:10:43,145][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-11 21:10:44,354][root][INFO] - Loading saved model state ...
+[2024-11-12 11:47:55,519][root][INFO] - CFG's local_rank=-1
+[2024-11-12 11:47:55,519][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 11:47:55,801][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 11:47:55,802][root][INFO] - 16-bits training: False 
+[2024-11-12 11:47:55,803][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 11:47:57,460][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 11:47:57,463][root][INFO] - CFG:
+[2024-11-12 11:47:57,473][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 11:47:59,086][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 11:48:00,172][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 11:48:01,359][root][INFO] - Loading saved model state ...
+[2024-11-12 12:05:04,958][root][INFO] - CFG's local_rank=-1
+[2024-11-12 12:05:04,958][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 12:05:05,187][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 12:05:05,187][root][INFO] - 16-bits training: False 
+[2024-11-12 12:05:05,188][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 12:05:06,807][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 12:05:06,808][root][INFO] - CFG:
+[2024-11-12 12:05:06,811][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 12:05:07,554][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:05:08,537][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:05:09,631][root][INFO] - Loading saved model state ...
+[2024-11-12 12:06:46,059][root][INFO] - CFG's local_rank=-1
+[2024-11-12 12:06:46,059][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 12:06:46,280][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 12:06:46,280][root][INFO] - 16-bits training: False 
+[2024-11-12 12:06:46,280][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 12:06:47,944][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 12:06:47,945][root][INFO] - CFG:
+[2024-11-12 12:06:47,948][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 12:06:48,704][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:06:49,734][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:06:50,856][root][INFO] - Loading saved model state ...
+[2024-11-12 12:16:30,450][root][INFO] - CFG's local_rank=-1
+[2024-11-12 12:16:30,450][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 12:16:30,674][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 12:16:30,674][root][INFO] - 16-bits training: False 
+[2024-11-12 12:16:30,674][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 12:16:32,258][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 12:16:32,258][root][INFO] - CFG:
+[2024-11-12 12:16:32,261][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 12:16:32,989][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:16:34,122][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:16:35,215][root][INFO] - Loading saved model state ...
+[2024-11-12 12:32:56,572][root][INFO] - CFG's local_rank=-1
+[2024-11-12 12:32:56,572][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 12:32:56,803][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 12:32:56,803][root][INFO] - 16-bits training: False 
+[2024-11-12 12:32:56,804][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 12:32:58,382][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 12:32:58,383][root][INFO] - CFG:
+[2024-11-12 12:32:58,385][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 12:32:59,116][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:33:00,441][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 12:33:01,562][root][INFO] - Loading saved model state ...
+[2024-11-12 16:00:31,936][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:00:31,936][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:00:32,160][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:00:32,161][root][INFO] - 16-bits training: False 
+[2024-11-12 16:00:32,161][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:00:33,759][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:00:33,760][root][INFO] - CFG:
+[2024-11-12 16:00:33,762][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:00:34,481][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:00:35,861][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:00:36,869][root][INFO] - Loading saved model state ...
+[2024-11-12 16:02:13,157][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:02:13,158][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:02:13,434][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:02:13,434][root][INFO] - 16-bits training: False 
+[2024-11-12 16:02:13,434][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:02:14,936][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:02:14,937][root][INFO] - CFG:
+[2024-11-12 16:02:14,939][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:02:15,665][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:02:16,661][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:02:17,742][root][INFO] - Loading saved model state ...
+[2024-11-12 16:04:03,746][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:04:03,747][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:04:03,964][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:04:03,965][root][INFO] - 16-bits training: False 
+[2024-11-12 16:04:03,965][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:04:05,460][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:04:05,461][root][INFO] - CFG:
+[2024-11-12 16:04:05,463][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:04:06,197][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:04:07,142][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:04:08,161][root][INFO] - Loading saved model state ...
+[2024-11-12 16:21:33,117][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:21:33,118][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:21:33,353][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:21:33,353][root][INFO] - 16-bits training: False 
+[2024-11-12 16:21:33,353][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:21:34,844][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:21:34,845][root][INFO] - CFG:
+[2024-11-12 16:21:34,848][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:21:35,597][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:21:36,565][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:21:37,589][root][INFO] - Loading saved model state ...
+[2024-11-12 16:25:39,849][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:25:39,849][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:25:40,075][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:25:40,076][root][INFO] - 16-bits training: False 
+[2024-11-12 16:25:40,077][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:25:41,632][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:25:41,636][root][INFO] - CFG:
+[2024-11-12 16:25:41,646][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:25:43,235][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:25:44,333][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:25:45,464][root][INFO] - Loading saved model state ...
+[2024-11-12 16:28:32,127][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:28:32,128][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:28:32,408][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:28:32,409][root][INFO] - 16-bits training: False 
+[2024-11-12 16:28:32,410][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:28:33,973][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:28:33,976][root][INFO] - CFG:
+[2024-11-12 16:28:33,987][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:28:35,572][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:28:36,873][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:28:37,975][root][INFO] - Loading saved model state ...
+[2024-11-12 16:39:01,319][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:39:01,320][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:39:01,547][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:39:01,547][root][INFO] - 16-bits training: False 
+[2024-11-12 16:39:01,549][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:39:03,109][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:39:03,113][root][INFO] - CFG:
+[2024-11-12 16:39:03,123][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:39:04,713][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:39:05,750][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:39:06,840][root][INFO] - Loading saved model state ...
+[2024-11-12 16:41:21,839][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:41:21,840][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:41:22,068][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:41:22,069][root][INFO] - 16-bits training: False 
+[2024-11-12 16:41:22,070][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:41:23,630][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:41:23,633][root][INFO] - CFG:
+[2024-11-12 16:41:23,644][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:41:25,224][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:41:26,327][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:41:27,530][root][INFO] - Loading saved model state ...
+[2024-11-12 16:56:03,970][root][INFO] - CFG's local_rank=-1
+[2024-11-12 16:56:03,970][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 16:56:04,196][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 16:56:04,197][root][INFO] - 16-bits training: False 
+[2024-11-12 16:56:04,198][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 16:56:05,759][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 16:56:05,762][root][INFO] - CFG:
+[2024-11-12 16:56:05,773][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 16:56:07,362][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:56:08,443][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 16:56:09,575][root][INFO] - Loading saved model state ...
+[2024-11-12 19:32:10,505][root][INFO] - CFG's local_rank=-1
+[2024-11-12 19:32:10,506][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 19:32:10,733][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 19:32:10,734][root][INFO] - 16-bits training: False 
+[2024-11-12 19:32:10,735][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 19:32:12,308][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 19:32:12,311][root][INFO] - CFG:
+[2024-11-12 19:32:12,322][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 19:32:13,920][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:32:15,260][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:32:16,474][root][INFO] - Loading saved model state ...
+[2024-11-12 19:35:07,276][root][INFO] - CFG's local_rank=-1
+[2024-11-12 19:35:07,278][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 19:35:07,500][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 19:35:07,500][root][INFO] - 16-bits training: False 
+[2024-11-12 19:35:07,501][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 19:35:09,064][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 19:35:09,068][root][INFO] - CFG:
+[2024-11-12 19:35:09,078][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 19:35:10,686][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:35:11,890][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:35:13,333][root][INFO] - Loading saved model state ...
+[2024-11-12 19:42:52,999][root][INFO] - CFG's local_rank=-1
+[2024-11-12 19:42:52,999][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 19:42:53,231][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 19:42:53,232][root][INFO] - 16-bits training: False 
+[2024-11-12 19:42:53,233][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 19:42:54,792][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 19:42:54,795][root][INFO] - CFG:
+[2024-11-12 19:42:54,806][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 19:42:56,421][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:42:57,726][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:42:59,108][root][INFO] - Loading saved model state ...
+[2024-11-12 19:59:18,978][root][INFO] - CFG's local_rank=-1
+[2024-11-12 19:59:18,978][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 19:59:19,206][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 19:59:19,206][root][INFO] - 16-bits training: False 
+[2024-11-12 19:59:19,207][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 19:59:20,774][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 19:59:20,778][root][INFO] - CFG:
+[2024-11-12 19:59:20,789][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 19:59:22,404][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:59:23,519][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 19:59:24,959][root][INFO] - Loading saved model state ...
+[2024-11-12 20:01:06,022][root][INFO] - CFG's local_rank=-1
+[2024-11-12 20:01:06,023][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 20:01:06,245][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 20:01:06,245][root][INFO] - 16-bits training: False 
+[2024-11-12 20:01:06,246][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 20:01:07,817][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 20:01:07,821][root][INFO] - CFG:
+[2024-11-12 20:01:07,833][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 20:01:09,471][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 20:01:11,197][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 20:01:12,365][root][INFO] - Loading saved model state ...
+[2024-11-12 20:03:15,336][root][INFO] - CFG's local_rank=-1
+[2024-11-12 20:03:15,336][root][INFO] - Env WORLD_SIZE=None
+[2024-11-12 20:03:15,557][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-12 20:03:15,557][root][INFO] - 16-bits training: False 
+[2024-11-12 20:03:15,558][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-12 20:03:17,051][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-12 20:03:17,052][root][INFO] - CFG:
+[2024-11-12 20:03:17,054][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-12 20:03:17,782][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 20:03:18,827][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-12 20:03:19,892][root][INFO] - Loading saved model state ...
+[2024-11-13 17:27:42,051][root][INFO] - CFG's local_rank=-1
+[2024-11-13 17:27:42,052][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 17:27:42,276][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 17:27:42,277][root][INFO] - 16-bits training: False 
+[2024-11-13 17:27:42,277][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 17:27:43,938][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 17:27:43,942][root][INFO] - CFG:
+[2024-11-13 17:27:43,952][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 17:27:45,598][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:27:46,691][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:27:47,836][root][INFO] - Loading saved model state ...
+[2024-11-13 17:29:27,200][root][INFO] - CFG's local_rank=-1
+[2024-11-13 17:29:27,200][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 17:29:27,427][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 17:29:27,428][root][INFO] - 16-bits training: False 
+[2024-11-13 17:29:27,429][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 17:29:29,004][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 17:29:29,008][root][INFO] - CFG:
+[2024-11-13 17:29:29,019][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 17:29:30,625][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:29:31,714][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:29:32,845][root][INFO] - Loading saved model state ...
+[2024-11-13 17:36:59,186][root][INFO] - CFG's local_rank=-1
+[2024-11-13 17:36:59,187][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 17:36:59,461][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 17:36:59,461][root][INFO] - 16-bits training: False 
+[2024-11-13 17:36:59,463][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 17:37:01,027][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 17:37:01,031][root][INFO] - CFG:
+[2024-11-13 17:37:01,041][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 17:37:02,642][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:37:03,718][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:37:04,870][root][INFO] - Loading saved model state ...
+[2024-11-13 17:46:37,078][root][INFO] - CFG's local_rank=-1
+[2024-11-13 17:46:37,079][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 17:46:37,307][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 17:46:37,308][root][INFO] - 16-bits training: False 
+[2024-11-13 17:46:37,309][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 17:46:38,907][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 17:46:38,911][root][INFO] - CFG:
+[2024-11-13 17:46:38,922][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 17:46:40,586][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:46:41,724][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:46:42,965][root][INFO] - Loading saved model state ...
+[2024-11-13 17:58:33,120][root][INFO] - CFG's local_rank=-1
+[2024-11-13 17:58:33,121][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 17:58:33,351][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 17:58:33,352][root][INFO] - 16-bits training: False 
+[2024-11-13 17:58:33,354][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 17:58:34,959][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 17:58:34,963][root][INFO] - CFG:
+[2024-11-13 17:58:34,974][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 17:58:36,589][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:58:37,645][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 17:58:38,843][root][INFO] - Loading saved model state ...
+[2024-11-13 18:01:35,511][root][INFO] - CFG's local_rank=-1
+[2024-11-13 18:01:35,511][root][INFO] - Env WORLD_SIZE=None
+[2024-11-13 18:01:35,735][root][INFO] - Initialized host dgx as d.rank -1 on device=cuda, n_gpu=8, world size=1
+[2024-11-13 18:01:35,735][root][INFO] - 16-bits training: False 
+[2024-11-13 18:01:35,735][root][INFO] - Reading saved model from /raid/home/specter/liuxy/llmReason/DPR/outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+[2024-11-13 18:01:37,238][root][INFO] - model_state_dict keys dict_keys(['model_dict', 'optimizer_dict', 'scheduler_dict', 'offset', 'epoch', 'encoder_params'])
+[2024-11-13 18:01:37,239][root][INFO] - CFG:
+[2024-11-13 18:01:37,241][root][INFO] - encoder:
+  encoder_model_type: hf_bert
+  pretrained_model_cfg: bert-base-uncased
+  pretrained_file: null
+  projection_dim: 0
+  sequence_length: 256
+  dropout: 0.1
+  fix_ctx_encoder: false
+  pretrained: true
+ctx_sources:
+  dpr_wiki:
+    _target_: dpr.data.retriever_data.CsvCtxSrc
+    file: data.wikipedia_split.psgs_w100
+    id_prefix: 'wiki:'
+model_file: outputs/2024-11-08/21-36-40/output/dpr_biencoder.29
+ctx_src: null
+encoder_type: ctx
+out_file: null
+do_lower_case: true
+shard_id: 0
+num_shards: 1
+batch_size: 32
+tables_as_passages: false
+special_tokens: null
+tables_chunk_sz: 100
+tables_split_type: type1
+local_rank: -1
+device: cuda
+distributed_world_size: 1
+distributed_port: null
+no_cuda: false
+n_gpu: 8
+fp16: false
+fp16_opt_level: O1
+
+[2024-11-13 18:01:37,968][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 18:01:38,952][dpr.models.hf_models][INFO] - Initializing HF BERT Encoder. cfg_name=bert-base-uncased
+[2024-11-13 18:01:39,998][root][INFO] - Loading saved model state ...
+[2024-11-21 16:18:23,016][openai._base_client][INFO] - Retrying request to /chat/completions in 0.498036 seconds
+[2024-11-22 14:10:43,302][openai._base_client][INFO] - Retrying request to /chat/completions in 0.464116 seconds
+[2024-11-26 18:05:53,913][openai._base_client][INFO] - Retrying request to /chat/completions in 0.470355 seconds

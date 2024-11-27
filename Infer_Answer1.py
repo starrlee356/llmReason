@@ -4,13 +4,13 @@ import numpy as np
 import pickle as pkl
 from collections import defaultdict
 import os
-import ollama
+#import ollama
 import re
-import torch
+import time
 
 class infer_and_answer:
     def __init__(self, entity_triplets_file, id2ent_file, id2rel_file, stats_file, rel_width, ent_width,
-                  fuzzy_rule, model_name, prune, score_rule, normalize_rule):
+                  fuzzy_rule, model_name, prune, score_rule, normalize_rule, LLM):
         self.entity_triplets = pkl.load(open(entity_triplets_file,"rb"))
         self.id2ent = pkl.load(open(id2ent_file,"rb"))
         self.id2rel = pkl.load(open(id2rel_file,"rb"))
@@ -24,11 +24,17 @@ class infer_and_answer:
         self.ent_width = ent_width
         self.rule = fuzzy_rule
         self.q_structs = QUERY_STRUCTS
-        self.llm = model_name
+        self.model = model_name
         self.empty_cnt = 0
         self.prune = prune
         self.score_rule = score_rule
         self.normalize_rule = normalize_rule
+        self.prompt_length = 0
+        self.rel_prompt_length = 0
+        self.rel_set_size = 0
+        self.llm_cnt = 0 
+        self.llm_time = 0
+        self.LLM = LLM
 
     def search_KG(self, entities_with_scores): # {ent id: score}
         rel2answer = defaultdict(set) # dict. rel name: {(ent_id, ent_score, answer_id)}
@@ -42,18 +48,86 @@ class infer_and_answer:
                 relations.add(rel_name)
                 rel2answer[rel_name].add((entity, score, t))
         return relations, rel2answer
-    
+    """
     def run_llm(self, prompt):
-        content = ollama.generate(model=self.llm, prompt=prompt)
-        response = content["response"]
-        return response
+        
+        #content = ollama.generate(model=self.model, prompt=prompt)
+        #response = content["response"]
+        #return response
+        
+        llm = LLM(self.model)
+        return llm.run(prompt)
+    """
+        
+        
+    def normalize(self, arr):
+
+        def average_norm(arr):
+            total = np.sum(arr)
+            if total == 0:
+                return arr  
+            return arr / total
+        
+        if self.normalize_rule == "average_norm":
+            return average_norm(arr)
+        
+        def min_max_norm(arr):
+            if arr.max() - arr.min() > 0:
+                return (arr - arr.min()) / (arr.max() - arr.min())
+            else:
+                return arr - arr.min()
+        
+        if self.normalize_rule == "min_max_norm":
+            return min_max_norm(arr)
+        
+        def standard_norm(arr):
+            if np.std(arr) == 0:
+                 return arr - np.mean(arr)
+            return (arr - np.mean(arr)) / np.std(arr)
+        
+        if self.normalize_rule == "standard_norm":
+            return standard_norm(arr)
+        
+        def sigmoid(arr):
+            return 1 / (1 + np.exp(-arr))
+        
+        if self.normalize_rule == "sigmoid":
+            return average_norm(min_max_norm(sigmoid(arr)))
+        
+        def softmax(arr):
+            x = np.exp(arr - np.max(arr))
+            if x.sum() > 0:
+                return x / x.sum()
+            return x
+        
+        if self.normalize_rule == "softmax":
+            return min_max_norm(softmax(arr))
+        
+        def l2_norm(arr):
+            norm = np.linalg.norm(arr, ord=2)
+            if norm == 0:
+                return arr
+            return arr / norm
+        
+        if self.normalize_rule == "l2_norm":
+            return l2_norm(arr)
+        
+    def get_prompt(self, relations, r):
+        p = f"Please score the below {len(relations)} relations based on similarity to ({r}). Each score is in [0, 1], the sum of all scores is 1.\n"
+        for id, rel in enumerate(relations):
+            p += f"{id+1}. ({rel})\n"
+        p += "Answer only id and score of relation with no other text.\n"
+        p += "Example input: '(1). (relation.name_1)\n(2). (relation.name_2)\n...'. Your example answer should be like: '(1). 0.8\n(2). 0.1\n...'"
+        p += "\nYour answer is:"
+        return p
     
     def format_llm_res(self, res:str):
         if res.startswith("Error"):
             print(res)
             # 其他错误处理代码
-
-        pattern = r'\d+\.\s*(\S+)\s*\(Score:\s*([0-1](?:\.\d+)?)\)'
+                #1. (xxx): score=(xxx)
+        #pattern = r"relation=\((\S+)\): score=\((\d*\.?\d*)\)"
+        pattern = r"\(d+\).s*\((\d*\.?\d*)\)"
         matches = re.findall(pattern, res)
         #relation_dict = {relation: float(score) for relation, score in matches if score > 0}
 
@@ -63,59 +137,42 @@ class infer_and_answer:
         if not matches or score_arr.sum()==0: 
             return False, "No relations found"
         
-        score_arr = self.normalize(score_arr)
+        #score_arr = self.normalize(score_arr)
         for i in range(score_arr.size):
             if score_arr[i] > 0:
                 relation_dict[matches[i][0]] = score_arr[i] # relation: normalized score
         
         return True, relation_dict
-        
-        
-    def normalize(self, arr):
-        if self.normalize_rule == "average_norm":
-            total = np.sum(arr)
-            if total == 0:
-                return arr  
-            return arr / total
-        
-        if self.normalize_rule == "min_max_norm":
-            if arr.max() - arr.min() > 0:
-                return (arr - arr.min()) / arr.max() - arr.min()
-            else:
-                return (arr - arr.min())
-        
-        if self.normalize_rule == "standard_norm":
-            if np.std(arr) == 0:
-                 return arr - np.mean(arr)
-            return (arr - np.mean(arr)) / np.std(arr)
-        
-        if self.normalize_rule == "sigmoid":
-            return 1 / (1 + np.exp(-arr))
-        
-        if self.normalize_rule == "softmax":
-            x = np.exp(arr - np.max(arr))
-            if x.sum() > 0:
-                return x / x.sum()
-            return x
-        
-        if self.normalize_rule == "l2_norm":
-            norm = np.linalg.norm(arr, ord=2)
-            if norm == 0:
-                return arr
-            return arr / norm
 
-    def rel_proj(self, vector, sub_question): # 接受一个variable的fuzzy vec; 返回它经过rel proj 后的variable的fuzzy vec
+    def rel_proj(self, vector, sub_question, relation): # 接受一个variable的fuzzy vec; 返回它经过rel proj 后的variable的fuzzy vec
         if vector is None:
-            self.empty_cnt += 1 
+            #self.empty_cnt += 1 
             return None
         
         entities_with_scores = self.fuzzyVector_to_entities(vector) #{ent id: score}
         relations, rel2answer = self.search_KG(entities_with_scores) # dict. rel name: {(ent_id, ent_score, answer_id)}
-        prompt = extract_relation_prompt % (self.rel_width, self.rel_width, self.rel_width, sub_question, '; '.join(relations))
-        result = self.run_llm(prompt) 
+        #prompt = extract_relation_prompt % (self.rel_width, sub_question, '; '.join(relations))
+        #relations = [f"'{r}'" for r in relations]
+        #prompt = rel_proj_prompt % ('; '.join(relations), relation, self.rel_width)
+        prompt = self.get_prompt(relations, relation)
+        rel_set_size = len(relations)
+        prompt_length = len(prompt)
+        rel_prompt_length = len('; '.join(relations))
+        #print(f"rel_set_size={rel_set_size}, prompt_len={prompt_length}, rel_prompt_len={rel_prompt_length}")
+        #print(prompt)
+        self.rel_set_size += rel_set_size
+        self.prompt_length += prompt_length
+        self.rel_prompt_length += rel_prompt_length
+        self.llm_cnt += 1
+
+        start = time.time()
+        result = self.LLM.run(prompt)
+        end = time.time()
+        self.llm_time += (end-start)
+        
         flag, res = self.format_llm_res(result) # dict. rel name: rel_score
         if not flag:
-            print(res)
+            #print(res)
             return None
         else:
             relations_with_scores = res
@@ -133,7 +190,7 @@ class infer_and_answer:
         
     def union(self, v1, v2, v3 = None): 
         if v1 is None or v2 is None:
-            self.empty_cnt += 1
+            #self.empty_cnt += 1
             return None
         if v3 is None:
             if self.rule == "min_max":
@@ -153,7 +210,7 @@ class infer_and_answer:
             
     def intersection(self, v1, v2, v3 = None):
         if v1 is None or v2 is None:
-            self.empty_cnt += 1
+            #self.empty_cnt += 1
             return None 
         if v3 is None:
             if self.rule == "min_max":
@@ -172,7 +229,7 @@ class infer_and_answer:
             
     def negation(self, v):
         if v is None:
-            self.empty_cnt += 1
+            #self.empty_cnt += 1
             return None
         return self.normalize(1-v)
 
@@ -239,12 +296,14 @@ class infer_and_answer:
             preds = []
             score_sum = 0
             for i, id in enumerate(sorted_indices):
-                if score_sum >= self.prune * vector.sum() or i > self.ent_width:
+                #if score_sum >= self.prune * vector.sum() or i > self.ent_width:
+                if score_sum >= self.prune * vector.sum():
                     break
                 preds.append(id)
                 score_sum += vector[id]
             pred = ", ".join(map(str, preds))
         else:
+            self.ent_num += 1
             pred = ""
         with open(output_file, "w") as prediction_file:
                 print(pred, file=prediction_file)
@@ -260,7 +319,7 @@ class infer_and_answer:
             vector = np.zeros((self.ent_num))
             vector[e1] = 1
             question = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            ans_vec = self.rel_proj(vector=vector, sub_question=question)
+            ans_vec = self.rel_proj(vector=vector, sub_question=question, relation=self.id2rel[r1])
             self.ansVector_to_ansFile(vector=ans_vec, output_file=output_file)
             del vector, ans_vec
 
@@ -269,9 +328,9 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            v2 = self.rel_proj(vector=v1, sub_question=q1)
+            v2 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             q2 = rel_proj_question % (intermediate_variable, self.id2rel[r2])
-            va = self.rel_proj(vector=v2, sub_question=q2) # answer vector
+            va = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2]) # answer vector
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, va
 
@@ -280,11 +339,11 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            v2 = self.rel_proj(vector=v1, sub_question=q1)
+            v2 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             q2 = rel_proj_question % (intermediate_variable, self.id2rel[r2])
-            v3 = self.rel_proj(vector=v2, sub_question=q2) # answer vector
+            v3 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2]) # answer vector
             q3 = rel_proj_question % (intermediate_variable, self.id2rel[r3])
-            va = self.rel_proj(vector=v3, sub_question=q3)
+            va = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             self.ansVector_to_ansFile(vector=va, output_file=output_file) 
             del v1, v2, v3, va            
 
@@ -296,8 +355,8 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i1= self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1= self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             va = self.intersection(i1, i2) # answer vector
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, i1, i2, va
@@ -313,9 +372,9 @@ class infer_and_answer:
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
             q3 = rel_proj_question % (self.id2ent[e3], self.id2rel[r3])
-            i1= self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
-            i3 = self.rel_proj(vector=v3, sub_question=q3)
+            i1= self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
+            i3 = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             va = self.intersection(i1, i2, i3)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, v3, i1, i2, i3, va
@@ -328,8 +387,8 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])            
-            i1= self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1= self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             i2 = self.negation(i2)
             va = self.intersection(i1, i2)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
@@ -346,9 +405,9 @@ class infer_and_answer:
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
             q3 = rel_proj_question % (self.id2ent[e3], self.id2rel[r3])
-            i1= self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
-            i3 = self.rel_proj(vector=v3, sub_question=q3)
+            i1= self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
+            i3 = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             i3 = self.negation(i3)
             va = self.intersection(i1, i2, i3)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
@@ -362,12 +421,12 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i1= self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1= self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             i2 = self.negation(i2)
             v3 = self.intersection(i1, i2)
             q3 = rel_proj_question % (intermediate_variable, self.id2rel[r3])
-            va = self.rel_proj(vector=v3, sub_question=q3)
+            va = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, i1, i2, v3, va
 
@@ -376,13 +435,13 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            v11 = self.rel_proj(vector=v1, sub_question=q1)
+            v11 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             q2 = rel_proj_question % (intermediate_variable, self.id2rel[r2])
-            i1 = self.rel_proj(vector=v11, sub_question=q2) 
+            i1 = self.rel_proj(vector=v11, sub_question=q2, relation=self.id2rel[r2]) 
             v2 = np.zeros((self.ent_num))
             v2[e2] = 1
             q3 = rel_proj_question % (self.id2ent[e2], self.id2rel[r3])
-            i2 = self.rel_proj(vector=v2, sub_question=q3)
+            i2 = self.rel_proj(vector=v2, sub_question=q3, relation=self.id2rel[r3])
             i2 = self.negation(i2)
             va = self.intersection(i1, i2)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
@@ -393,14 +452,14 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            v11 = self.rel_proj(vector=v1, sub_question=q1)
+            v11 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             q2 = rel_proj_question % (intermediate_variable, self.id2rel[r2])
-            i1 = self.rel_proj(vector=v11, sub_question=q2) 
+            i1 = self.rel_proj(vector=v11, sub_question=q2, relation=self.id2rel[r2]) 
             i1 = self.negation(i1)
             v2 = np.zeros((self.ent_num))
             v2[e2] = 1
             q3 = rel_proj_question % (self.id2ent[e2], self.id2rel[r3])
-            i2 = self.rel_proj(vector=v2, sub_question=q3)
+            i2 = self.rel_proj(vector=v2, sub_question=q3, relation=self.id2rel[r3])
             va = self.intersection(i1, i2)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v11, i1, v2, i2, va
@@ -413,11 +472,11 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i1 = self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             v3 = self.intersection(i1, i2)
             q3 = rel_proj_question % (intermediate_variable, self.id2rel[r3])
-            va = self.rel_proj(vector=v3, sub_question=q3)
+            va = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, i1, i2, v3, va
 
@@ -426,13 +485,13 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            v11 = self.rel_proj(vector=v1, sub_question=q1)
+            v11 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             q2 = rel_proj_question % (intermediate_variable, self.id2rel[r2])
-            i1 = self.rel_proj(vector=v11, sub_question=q2) 
+            i1 = self.rel_proj(vector=v11, sub_question=q2, relation=self.id2rel[r2]) 
             v2 = np.zeros((self.ent_num))
             v2[e2] = 1
             q3 = rel_proj_question % (self.id2ent[e2], self.id2rel[r3])
-            i2 = self.rel_proj(vector=v2, sub_question=q3)
+            i2 = self.rel_proj(vector=v2, sub_question=q3, relation=self.id2rel[r3])
             va = self.intersection(i1, i2)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v11, i1, v2, i2, va
@@ -445,8 +504,8 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i1 = self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             va = self.union(i1, i2)
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, i1, i2, va
@@ -459,11 +518,11 @@ class infer_and_answer:
             v2[e2] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i1 = self.rel_proj(vector=v1, sub_question=q1)
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i1 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             v3 = self.union(i1, i2)
             q3 = rel_proj_question % (intermediate_variable, self.id2rel[r3])
-            va = self.rel_proj(vector=v3, sub_question=q3)
+            va = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, v2, i1, i2, v3, va
 
@@ -472,12 +531,12 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            i1 = self.rel_proj(vector=v1, sub_question=q1)
+            i1 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             i1 = self.negation(i1)
             v2 = np.zeros((self.ent_num))
             v2[e2] = 1
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             i2 = self.negation(i2)
             va = self.intersection(i1, i2)
             va = self.negation(va)
@@ -489,19 +548,20 @@ class infer_and_answer:
             v1 = np.zeros((self.ent_num))
             v1[e1] = 1
             q1 = rel_proj_question % (self.id2ent[e1], self.id2rel[r1])
-            i1 = self.rel_proj(vector=v1, sub_question=q1)
+            i1 = self.rel_proj(vector=v1, sub_question=q1, relation=self.id2rel[r1])
             i1 = self.negation(i1)
             v2 = np.zeros((self.ent_num))
             v2[e2] = 1
             q2 = rel_proj_question % (self.id2ent[e2], self.id2rel[r2])
-            i2 = self.rel_proj(vector=v2, sub_question=q2)
+            i2 = self.rel_proj(vector=v2, sub_question=q2, relation=self.id2rel[r2])
             i2 = self.negation(i2)
             v3 = self.intersection(i1, i2)
             v3 = self.negation(v3)
             q3 = rel_proj_question % (intermediate_variable, self.id2rel[r3])
-            va = self.rel_proj(vector=v3, sub_question=q3)
+            va = self.rel_proj(vector=v3, sub_question=q3, relation=self.id2rel[r3])
             self.ansVector_to_ansFile(vector=va, output_file=output_file)
             del v1, i1, v2, i2, v3, va       
+
 
 
 

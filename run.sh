@@ -1,28 +1,28 @@
-cd ~/liuxy/llmReason/code
-
-python Infer_ans_main.py --qtype 3p
-python compute_scores.py --score_file 3p.txt --qtype 3p
-
-python Infer_ans_main.py --qtype pi
-python compute_scores.py --score_file pi.txt --qtype pi
-
-python Infer_ans_main.py --qtype pni
-python compute_scores.py --score_file pni.txt --qtype pni
-
-python Infer_ans_main.py --qtype 2in
-python compute_scores.py --score_file 2in.txt --qtype 2in
-
-python Infer_ans_main.py --qtype 3i
-python compute_scores.py --score_file 3i.txt --qtype 3i
-
-python Infer_ans_main.py --qtype 3in
-python compute_scores.py --score_file 3in.txt --qtype 3in
-
-python Infer_ans_main.py --qtype inp
-python compute_scores.py --score_file inp.txt --qtype inp
-
-python Infer_ans_main.py --qtype pni
-python compute_scores.py --score_file pni.txt --qtype pni
-
-python Infer_ans_main.py --qtype nipn
-python compute_scores.py --score_file nipn.txt --qtype nipn
+python -m pdb Infer_ans_main.py \
+ --data_path ../data/NELL0 \
+ --prefix_path ../data/NELL0/processed \
+ --rel_width 50 \
+ --ent_width 50 \
+ --tail_width 5 \
+ --normalize_rule softmax \
+ --ground_truth_path test_sorted_answers \
+ --prediction_path llmR/trainG_testQ_preds \
+ --log_score_path llmR/trainG_testQ_scores \
+ --random_path llmR/random_list \
+ --random_num 100 \
+ --quries_file test-queries.pkl \
+ --triplets_file llmR/train-headent-triplets.pkl\
+ --qtype2cnt_file test-qtype2cnt.pkl \
+ --id2q_file test-id2q.pkl \
+ --qtype 1p \
+ --score_file 1p_withDR.txt \
+ --api gpt \
+ --model_name gpt-4 \
+ --depth 3 \
+ --path_width 50 \
+ --prompt_width 10 \
+ --device cuda:0 \
+ --encoder_model bert-base-uncased \
+ --ckpt_file ../path_score/output/2024-11-22-19-52/encoder_ep%s.ckpt \
+ --ckpt_ep 16 \
+ --DR_bsz 64

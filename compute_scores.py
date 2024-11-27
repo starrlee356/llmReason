@@ -2,10 +2,11 @@ import os
 import re
 import sys
 from tqdm import tqdm
-from global_config import QUERY_STRUCTS
+from global_config import *
 import numpy as np
 import argparse
 import json
+from datetime import datetime
 
 def clean_string(string):
     clean_str = re.sub(r"[^0-9,]","",string)
@@ -53,26 +54,22 @@ def compute_hits_score(ground_truth, predictions, k=1):
     if l == 0: l = 1
     return hits/l
 
-def compute_score(qtype, mode, args): 
-    log_path = os.path.join(args.output_path, args.log_score_path)
-    if not os.path.exists(log_path):
-        os.makedirs(log_path)
-    log_score_filename = os.path.join(log_path, args.score_file)
+def compute_score(qtype, mode, log_path, args, info): 
+    # log_score_filename = os.path.join(log_path, args.score_file)
+    cur_time = datetime.now().strftime("%Y-%m-%d-%H-%M")
+    log_score_filename = os.path.join(log_path, f"{cur_time}_{args.score_file}")
     if os.path.exists(log_score_filename):
         os.remove(log_score_filename)
 
-    if args.random_size > 0:
-        idx_list = json.load(open(os.path.join(args.output_path, "random_list", f"{qtype}_random_list.json"), "r"))
-    else:
-        idx_list = [i for i in range(args.whole_size)]
 
     scores = {"hits@1":0,"hits@3":0,"hits@10":0,
             "ndcg@1":0,"ndcg@3":0,"ndcg@10":0,
             "mrr":0}
     
+    idx_list = json.load(open(os.path.join(args.prefix_path, args.random_path, f"{qtype}.json"), "r"))
     for idx in idx_list:
-        gt_filename = os.path.join(args.output_path, args.ground_truth_path, f"{qtype}_{idx}_answer.txt")
-        pred_filename = os.path.join(args.output_path, args.prediction_path, f"{qtype}_{idx}_predicted_answer.txt")
+        gt_filename = os.path.join(args.prefix_path, args.ground_truth_path, f"{qtype}_{idx}_answer.txt")
+        pred_filename = os.path.join(args.prefix_path, args.prediction_path, f"{qtype}_{idx}_predicted_answer.txt")
         
         with open(gt_filename) as gt_f:
             cleaned_gt = clean_string(gt_f.read()).split(",")
@@ -91,9 +88,12 @@ def compute_score(qtype, mode, args):
         scores["ndcg@10"] += compute_ndcg_score(gt, pred, k=10)
         scores["mrr"] += compute_mrr_score(gt, pred)
 
-        
+    print("MRR:",scores["mrr"]/len(idx_list))
     with open(log_score_filename, mode) as score_file:
         print(qtype, file=score_file)
+        for arg, val in vars(args).items():
+            print(f"{arg}: {val}", file=score_file)
+        print(info, file=score_file)
         print("HITS@1:",scores["hits@1"]/len(idx_list), file=score_file)
         print("HITS@3:",scores["hits@3"]/len(idx_list), file=score_file)
         print("HITS@10:",scores["hits@10"]/len(idx_list), file=score_file)
@@ -102,26 +102,17 @@ def compute_score(qtype, mode, args):
         print("NDCG@10:",scores["ndcg@10"]/len(idx_list), file=score_file)
         print("MRR:",scores["mrr"]/len(idx_list), file=score_file)
 
-def compute_score_main(args):
+def compute_score_main(args, info):
+    log_path = os.path.join(args.prefix_path, args.log_score_path)
+    if not os.path.exists(log_path):
+        os.makedirs(log_path)
+
     if args.qtype == "all":
         for i, qtype in enumerate(QUERY_STRUCTS.keys()):
-            compute_score(qtype, "a", args) # "all1.txt", "all2.txt"...
+            compute_score(qtype, "a", log_path, args, info) # "all1.txt", "all2.txt"...
     else:
-        compute_score(args.qtype, "w", args) #"2p.txt"
-                
-"""
-if __name__=="__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--output_path', type=str, default="../data/NELL-betae/processed", help="Path to ground truth data.")
-    parser.add_argument('--ground_truth_path', type=str, default="answers", help="Path to ground truth data.")
-    parser.add_argument('--prediction_path', type=str, default="preds", help="Path to the prediction files.")
-    parser.add_argument('--log_score_path', type=str, default="scores", help="Path to log scores")
-    parser.add_argument('--score_file', type=str, default="2p.txt", help="file name to log scores")
-    parser.add_argument('--qtype', type=str, default="2p")
-    parser.add_argument('--random_size', type=int, default=50)
-    parser.add_argument('--whole_size', type=int, default=0) #由infer_ans_main设置
-    args = parser.parse_args()
-    """
+        compute_score(args.qtype, "w", log_path, args, info) #"2p.txt"
+
 
 
 

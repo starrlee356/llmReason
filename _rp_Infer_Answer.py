@@ -8,14 +8,20 @@ import os
 import re
 import time
 from compute_scores import compute_mrr_score, clean_string
+from _relproj import RelProj
+from _rp_utils import *
+
 """prompt, 让LLM输出更短"""
 
 class infer_and_answer:
     def __init__(self, entity_triplets_file, id2ent_file, id2rel_file, stats_file, rel_width, ent_width,
-                  fuzzy_rule, model_name, prune, score_rule, normalize_rule, LLM, args):
+                  fuzzy_rule, model_name, prune, score_rule, normalize_rule, LLM, args, Retriever):
         self.entity_triplets = pkl.load(open(entity_triplets_file,"rb"))
         self.id2ent = pkl.load(open(id2ent_file,"rb"))
         self.id2rel = pkl.load(open(id2rel_file,"rb"))
+        self.rel2path = pkl.load(open(os.path.join(args.prefix_path, "llmR", "rel2path.pkl"), "rb"))
+        self.rel2id = pkl.load(open(os.path.join(args.data_path, "rel2id.pkl"), "rb"))
+
         with open(stats_file, "r") as f:
             for line in f:
                 if line.startswith("numentity:"):
@@ -31,116 +37,50 @@ class infer_and_answer:
         self.prune = prune
         self.score_rule = score_rule
         self.normalize_rule = normalize_rule
-        self.prompt_length = 0
-        self.rel_prompt_length = 0
-        self.rel_set_size = 0
-        self.llm_cnt = 0 
+
+        self.rp_cnt = 0 
         self.llm_time = 0
         self.LLM = LLM
+
         self.prompt_token_len, self.gen_token_len = self.LLM.get_token_length()
+
         self.args = args
-        self.id2ent = pkl.load(open(os.path.join(args.data_path,"id2ent.pkl"), "rb"))
-        self.id2rel = pkl.load(open(os.path.join(args.data_path, "id2rel.pkl"), "rb"))
+        self.Retriever = Retriever
+
+        self.search_time = 0
+        self.DR_time = 0
+
+        #for db
+        self.hit_rate = 0
+        self.hit_rate_wo_prune = 0
+        self.hit_rate_prune_tail = 0
+        self.empty_inter_id = 0
+        self.all_path_top_score = 0
+        self.DR_path_top_score = 0
+        self.DR_loader_len = 0
+
+        self.mrr_wo_llm = 0
+        self.mrr_w_llm = 0
+        self.topK_path_hit_ans_rate = 0
+        self.llm_res_hit_ans_rate = 0
+        self.tails_size = 0
+
+        self.fscore1 = 0
+        self.fscore2 = 0
+        self.fscore5 = 0
+
 
     def clean_string(self, string):
         return clean_string(string)
     def compute_mrr(self, gt, pred):
         return compute_mrr_score(gt, pred)
-    
-    def search_KG(self, entities_with_scores): # {ent id: score}
-        rel2answer = defaultdict(set) # dict. rel id: {(ent_id, ent_score, answer_id)}
-        relations = set() # set of tuples, (rel id, rel name)
-        for entity, score in entities_with_scores.items():
-            for triple in self.entity_triplets[entity]:
-                h, r, t = triple
-                if entity != h: # 只看从ent出来的边
-                    continue
-                rel_name = self.id2rel[r]
-                relations.add((r, rel_name))
-                rel2answer[r].add((entity, score, t))
-        return relations, rel2answer
-     
-        
-    def get_prompt(self, relations, r):
-        p = f"Please score the below {len(relations)} relations based on similarity to ({r}). Each score is in [0, 1], the sum of all scores is 1.\n"
-        for rel_id, rel_name in relations:
-            p += f"({rel_id}). ({rel_name})\n"
-        p += "Answer only id and score of relation with no other text.\n"
-        p += "Example input: '(1). (relation.name_1)\n(21). (relation.name_21)\n...'. Your example answer should be like: '(1). 0.8\n(21). 0.1\n...'"
-        p += f"Your answer should contrain no more than {len(relations)} relations.\nYour answer is:"
-        return p
-    
-    def format_llm_res(self, res:str):
-        if res.startswith("Error"):
-            print(res)
 
-        pattern = r"\((\d+)\)\.\s*(\d*\.?\d*)"
-        matches = re.findall(pattern, res) # [(rel id, rel score),...] e.g. [('1', '1.0'), ('2', '0.1'), ('3', '1')]
-
-        relation_dict = {}
-        #score_arr = np.array([score for _, score in matches]).astype(np.float32) #dtype: "<U3" -> np.float32
-        
-        score_list = []
-        for _, score in matches:
-            try:
-                score_list.append(float(score))
-            except ValueError:
-                continue
-        score_arr = np.array(score_list)
-        
-        if not matches or score_arr.sum()==0: 
-            self.empty_cnt += 1
-            return False, "No relations found"
-        
-        #score_arr = self.normalize(score_arr)
-        for i in range(score_arr.size):
-            if score_arr[i] > 0:
-                relation_dict[int(matches[i][0])] = score_arr[i] # relation: normalized score
-        
-        return True, relation_dict
-    
     def get_token_len(self):
         p, g = self.LLM.get_token_length()
         self.prompt_token_len = p - self.prompt_token_len
         self.gen_token_len = g - self.gen_token_len
 
-    def rel_proj(self, vector, sub_question, relation): # 接受一个variable的fuzzy vec; 返回它经过rel proj 后的variable的fuzzy vec
-        if vector is None:
-            return None
-        
-        entities_with_scores = self.fuzzyVector_to_entities(vector) #{ent id: score}
-        relations, rel2answer = self.search_KG(entities_with_scores) # dict. rel id: set of (ent_id, ent_score, answer_id)
 
-        prompt = self.get_prompt(relations, relation)
-
-        self.llm_cnt += 1
-
-        start = time.time()
-        result = self.LLM.run(prompt)
-        end = time.time()
-        self.llm_time += (end-start)
-        
-        flag, res = self.format_llm_res(result) # dict. rel id(int): rel_score(float)
-
-        self.prompt = prompt
-        self.result = result
-        self.res = res
-
-        if not flag:
-            return None
-        else:
-            relations_with_scores = res
-            ans_vec = np.zeros((self.ent_num))
-            for rel_id in relations_with_scores:
-                rel_score = relations_with_scores[rel_id]
-                for answer in rel2answer[rel_id]:
-                    _, ent_score, ans_id = answer
-                    if self.score_rule == "sum":
-                        ans_vec[ans_id] += ent_score * rel_score 
-                    if self.score_rule == "max":
-                        ans_vec[ans_id] = max(ans_vec[ans_id], ent_score * rel_score)    
-            ans_vec = self.normalize(ans_vec)
-            return ans_vec
         
     def union(self, v1, v2, v3 = None): 
         if v1 is None or v2 is None:
@@ -189,80 +129,8 @@ class infer_and_answer:
     
 
     def normalize(self, arr):
-
-        def average_norm(arr):
-            total = np.sum(arr)
-            if total == 0:
-                return arr  
-            return arr / total
+        return normalize(arr, self.normalize_rule)
         
-        if self.normalize_rule == "average_norm":
-            return average_norm(arr)
-        
-        def min_max_norm(arr):
-            if arr.max() - arr.min() > 0:
-                return (arr - arr.min()) / (arr.max() - arr.min())
-            else:
-                #return arr - arr.min()
-                return arr 
-        
-        if self.normalize_rule == "min_max_norm":
-            return min_max_norm(arr)
-        
-        def standard_norm(arr):
-            if np.std(arr) == 0:
-                 return arr - np.mean(arr)
-            return (arr - np.mean(arr)) / np.std(arr)
-        
-        if self.normalize_rule == "standard_norm":
-            return standard_norm(arr)
-        
-        def sigmoid(arr):
-            return 1 / (1 + np.exp(-arr))
-        
-        if self.normalize_rule == "sigmoid":
-            #return sigmoid(arr)
-            return average_norm(min_max_norm(sigmoid(arr)))
-        
-        def softmax(arr):
-            x = np.exp(arr - np.max(arr))
-            if x.sum() > 0:
-                return x / x.sum()
-            return x
-        
-        if self.normalize_rule == "softmax":
-            #return softmax(arr)
-            return min_max_norm(softmax(arr))
-        
-        def l2_norm(arr):
-            norm = np.linalg.norm(arr, ord=2)
-            if norm == 0:
-                return arr
-            return arr / norm
-        
-        if self.normalize_rule == "l2_norm":
-            return l2_norm(arr)
-        
-        
-    def fuzzyVector_to_entities_wo_prune(self, vector): # from fuzzy vec to answer entity
-        if vector is None:
-            return None
-        
-        else:
-            scores = []
-            sorted_indices = np.argsort(vector)[::-1]
-            for i in range(self.ent_width):
-                if vector[sorted_indices[i]] <= 0:
-                    break
-                scores.append(vector[sorted_indices[i]])
-            score_sum = sum(scores)
-
-            if score_sum > 0:
-                result = {sorted_indices[i]: scores[i]/score_sum for i in range(len(scores))} # ent id: normalized score
-            else:
-                result = {sorted_indices[i]: scores[i] for i in range(len(scores))} 
-        
-            return result
         
     def fuzzyVector_to_entities(self, vector): # use prune
         if vector is None:
@@ -279,27 +147,14 @@ class infer_and_answer:
                 score_sum += vector[sorted_indices[i]]
 
             if score_sum > 0:
-                #result = {sorted_indices[i]: scores[i]/score_sum for i in range(len(scores))} # ent id: normalized score
-                result = {sorted_indices[i]: scores[i] for i in range(len(scores))}
+                arr_score = np.array(scores)
+                #arr_score = normalize(arr_score, self.normalize_rule)
+                result = {sorted_indices[i]: arr_score[i] for i in range(len(scores))} #ent id: norm score
             else:
                 result = {} #empty
         
             return result
-        
-    def ansVector_to_ansFile_wo_prune(self, vector, output_file):
-        if vector is not None:
-            sorted_indices = np.argsort(vector)[::-1] #全体实体,分数从高到低
-            preds = []
-            for id in sorted_indices:
-                if vector[id] <= 0:
-                    break
-                else:
-                    preds.append(id)
-            pred = ", ".join(map(str, preds))
-        else:
-            pred = ""
-        with open(output_file, "w") as prediction_file:
-                print(pred, file=prediction_file)
+
 
     def ansVector_to_ansFile(self, vector, output_file):
         if vector is not None:
@@ -318,8 +173,8 @@ class infer_and_answer:
                 self.mrr = mrr
                 self.pred = preds #list of id
                 #self.pred_text = ", ".join([self.id2ent[x] for x in self.pred])
-                if mrr < 1:
-                    print("bk")
+                #if mrr < 1:
+                    #print("bk")
             
             pred = ", ".join(map(str, preds))
         else:
@@ -329,6 +184,37 @@ class infer_and_answer:
         with open(output_file, "w") as prediction_file:
                 print(pred, file=prediction_file)
 
+    def rel_proj(self, vector, sub_question, relation):#vector=vector, sub_question=question, relation=self.id2rel[r1]
+        entities_with_score = self.fuzzyVector_to_entities(vector)
+        rid = self.rel2id[relation]
+        #self, args, LLM, entities_with_score, r_name, ent_num, ent_triplets, id2rel, DR; *ans only for 1p*
+        RP = RelProj(self.args, self.LLM, entities_with_score, relation, self.ent_num, self.entity_triplets, self.id2rel, self.Retriever, self.gt, self.id2ent, sub_question)
+        tail_vector = RP.run()
+        self.rp_cnt += 1
+        self.llm_time += RP.llm_time
+        self.empty_cnt += RP.empty_cnt
+        self.search_time += RP.search_time
+        self.DR_time += RP.DR_time
+        #for debug
+        self.mrr_wo_llm += RP.mrr_wo_llm
+        self.mrr_w_llm += RP.mrr_w_llm
+        print(f"avg mrr_w_llm = {self.mrr_w_llm/self.rp_cnt}, avg mrr_wo_llm = {self.mrr_wo_llm/self.rp_cnt}")
+        self.llm_res_hit_ans_rate += RP.llm_res_hit_ans_rate
+        self.topK_path_hit_ans_rate += RP.topK_path_hit_ans_rate
+        self.tails_size += RP.tails_size
+        self.fscore1 += RP.fscore1
+        self.fscore2 += RP.fscore1
+        self.fscore5 += RP.fscore5
+
+        self.hit_rate += RP.hit_rate
+        self.hit_rate_wo_prune += RP.hit_rate_wo_prune
+        self.hit_rate_prune_tail += RP.hit_rate_prune_tail
+        self.empty_inter_id += RP.empty_inter_id
+        self.all_path_top_score += RP.all_path_top_score
+        self.DR_path_top_score += RP.DR_path_top_score
+        self.DR_loader_len += RP.DR_loader_len
+
+        return tail_vector
 
     def answer_query(self, logical_query, query_type, idx, output_path):
         e1 = r1 = e2 = r2= e3 = r3 = None
